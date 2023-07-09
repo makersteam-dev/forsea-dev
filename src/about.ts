@@ -1,13 +1,14 @@
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import SplitType from 'split-type';
+
+gsap.registerPlugin(SplitText);
 gsap.registerPlugin(ScrollTrigger);
 
 window.Webflow = window.Webflow || [];
 window.Webflow.push(() => {
   document.addEventListener('DOMContentLoaded', function () {
-    new SplitType('.about_side-text', {
-      types: 'words, chars',
+    new SplitText('.about_side-text', {
+      type: 'words, chars',
       tagName: 'span',
     });
     const tl = gsap.timeline({

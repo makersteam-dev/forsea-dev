@@ -138,28 +138,33 @@ window.Webflow.push(() => {
     frames.forEach(function (frame, index) {
       gsap.set(frame, {
         translateZ: '-100rem',
-        filter: 'blur(10px)',
+        filter: 'blur(20px)',
         opacity: 0,
       });
-
       tl.to(
         frame,
         {
           duration: 8,
           ease: 'power2.inOut',
-          translateZ: '100rem',
-          opacity: 1,
+          translateZ: index === 5 ? '30rem' : '100rem',
         },
-        '<+=' + index * 0.7
+        '<+=' + index * 0.6
       );
-
       tl.to(
         frame,
         {
-          duration: 4, // Adjust the duration of the blur animation here
-          filter: 'blur(0px)',
+          duration: 1, // Adjust the duration of the blur animation here
+          opacity: 1,
         },
         '<' // Play the blur animation immediately after the previous animation
+      );
+      tl.to(
+        frame,
+        {
+          duration: 2.5, // Adjust the duration of the blur animation here
+          filter: 'blur(0px)',
+        },
+        '<+=2' // Play the blur animation immediately after the previous animation
       );
     });
   });
