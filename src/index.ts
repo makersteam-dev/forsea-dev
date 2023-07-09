@@ -4,6 +4,27 @@ gsap.registerPlugin(ScrollTrigger);
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
+  /* Set main color on page load to the proper color */
+  gsap.set('main', {
+    backgroundColor: '#EDF1F7',
+  });
+
+  /* H1 split text animation */
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  new SplitType('[mt-el=split]', {
+    types: 'words, chars',
+    tagName: 'span',
+  });
+  const tl = gsap.timeline();
+  tl.from('[mt-el=split] > .word > .char', {
+    duration: 1,
+    opacity: 0,
+    yPercent: 100,
+    stagger: 0.05,
+    ease: 'back.out(2)',
+  });
+
   /* Main Wrapper: Background Change Animation */
   gsap.utils.toArray('[mt-el=background]').forEach((elem) => {
     const color = (elem as HTMLElement).getAttribute('data-color');
