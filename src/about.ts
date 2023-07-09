@@ -1,5 +1,3 @@
-gsap.registerPlugin(ScrollTrigger);
-
 window.Webflow = window.Webflow || [];
 window.Webflow.push(() => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
