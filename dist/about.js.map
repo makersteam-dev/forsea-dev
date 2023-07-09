@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../bin/live-reload.js", "../src/about.ts"],
-  "sourcesContent": ["new EventSource(`${SERVE_ORIGIN}/esbuild`).addEventListener('change', () => location.reload());\r\n", "gsap.registerPlugin(ScrollTrigger);\r\n\r\nwindow.Webflow = window.Webflow || [];\r\nwindow.Webflow.push(() => {\r\n  // eslint-disable-next-line @typescript-eslint/ban-ts-comment\r\n  // @ts-ignore\r\n  new SplitType('.about_side-text', {\r\n    types: 'words, chars',\r\n    tagName: 'span',\r\n  });\r\n  const tl = gsap.timeline({\r\n    scrollTrigger: {\r\n      trigger: '.about_side-text-wrapper',\r\n      scrub: true,\r\n      start: 'top center',\r\n      end: '+=100%',\r\n    },\r\n  });\r\n  tl.from('.about_side-text > .word', {\r\n    duration: 1,\r\n    opacity: 0.1,\r\n    stagger: 0.4,\r\n    ease: 'power2.inOut',\r\n  });\r\n});\r\n"],
-  "mappings": ";;;AAAA,MAAI,YAAY,GAAG,iCAAsB,EAAE,iBAAiB,UAAU,MAAM,SAAS,OAAO,CAAC;;;ACA7F,OAAK,eAAe,aAAa;AAEjC,SAAO,UAAU,OAAO,WAAW,CAAC;AACpC,SAAO,QAAQ,KAAK,MAAM;AAGxB,QAAI,UAAU,oBAAoB;AAAA,MAChC,OAAO;AAAA,MACP,SAAS;AAAA,IACX,CAAC;AACD,UAAM,KAAK,KAAK,SAAS;AAAA,MACvB,eAAe;AAAA,QACb,SAAS;AAAA,QACT,OAAO;AAAA,QACP,OAAO;AAAA,QACP,KAAK;AAAA,MACP;AAAA,IACF,CAAC;AACD,OAAG,KAAK,4BAA4B;AAAA,MAClC,UAAU;AAAA,MACV,SAAS;AAAA,MACT,SAAS;AAAA,MACT,MAAM;AAAA,IACR,CAAC;AAAA,EACH,CAAC;",
-  "names": []
-}
