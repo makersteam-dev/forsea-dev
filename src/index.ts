@@ -4,165 +4,163 @@ gsap.registerPlugin(ScrollTrigger);
 
 window.Webflow ||= [];
 window.Webflow.push(() => {
-  document.addEventListener('DOMContentLoaded', function () {
-    /* Main Wrapper: Background Change Animation */
-    gsap.utils.toArray('[mt-el=background]').forEach((elem) => {
-      const color = (elem as HTMLElement).getAttribute('data-color');
-      if (color !== null) {
-        ScrollTrigger.create({
-          trigger: elem as Element,
-          start: 'top 80%',
-          end: 'bottom 80%',
-          onEnter: function () {
-            gsap.to('main', {
-              backgroundColor: color,
-              duration: 1,
-              ease: 'power2.inOut',
-            });
-          },
-          onLeave: function () {
-            gsap.to('main', {
-              backgroundColor: color,
-              duration: 1,
-              ease: 'power2.inOut',
-            });
-          },
-          onLeaveBack: function () {
-            gsap.to('main', {
-              backgroundColor: color,
-              duration: 1,
-              ease: 'power2.inOut',
-            });
-          },
-          onEnterBack: function () {
-            gsap.to('main', {
-              backgroundColor: color,
-              duration: 1,
-              ease: 'power2.inOut',
-            });
-          },
-          markers: false,
-        });
-      }
-    });
-
-    /* Section: Who We Are Hover Animation */
-    const whoWeAreWrappers = document.querySelectorAll<HTMLElement>('.who-we-are-wrapper');
-
-    whoWeAreWrappers.forEach((wrapper) => {
-      const sectionHeading = wrapper.querySelector('.who-we-are-p') as HTMLElement;
-      const sectionSpans = wrapper.querySelectorAll<HTMLElement>('.wave-link');
-      const sectionItems = wrapper.querySelectorAll<HTMLElement>('.about_item');
-
-      sectionSpans.forEach((span, index) => {
-        const relatedImages = sectionItems[index].querySelectorAll<HTMLElement>('.about_image');
-
-        const tl = gsap.timeline({ paused: true, defaults: { duration: 0.2 } });
-        tl.set(span, { zIndex: 3 });
-        tl.to(relatedImages, { opacity: 1, ease: 'power4.out' });
-        tl.fromTo(sectionHeading, { color: '#000000' }, { color: 'rgba(0, 0, 0, 0.2)' }, '<');
-
-        span.addEventListener('mouseenter', () => {
-          tl.timeScale(1).play();
-        });
-        span.addEventListener('mouseleave', () => {
-          tl.timeScale(2).reverse();
-        });
-      });
-    });
-
-    /* Section: Play Button */
-    const video = document.getElementById('myVideo') as HTMLVideoElement;
-    const btnSvg = document.querySelector<HTMLElement>('.video-btn-svg');
-
-    video.addEventListener('click', () => {
-      if (video.paused) {
-        video.play();
-        if (btnSvg !== null) {
-          btnSvg.style.display = 'none'; // Hide the .video-btn-svg element
-        }
-      } else {
-        video.pause();
-        if (btnSvg !== null) {
-          btnSvg.style.display = 'block'; // Show the .video-btn-svg element
-        }
-      }
-    });
-
-    /* Section: Scroll Sticky Z-index Animation */
-    // gsap.matchMedia().add("(min-width: 992px)", () => {
-    //   const tl = gsap.timeline({
-    //     scrollTrigger: {
-    //       trigger: ".the-content",
-    //       scrub: true,
-    //       pin: true,
-    //       start: "top top",
-    //       end: "+=1200%",
-    //       markers: false
-    //     }
-    //   });
-    //   gsap.utils.toArray(".a-block").forEach((frame, index) => {
-    //     gsap.set(frame, {
-    //       translateZ: "-100rem",
-    //       filter: "blur(10px)",
-    //       opacity: 0
-    //     });
-
-    //     tl.to(frame, {
-    //       duration: 8,
-    //       ease: "power2.inOut",
-    //       translateZ: "100rem"
-    //     }).to(
-    //       frame,
-    //       {
-    //         duration: 4, // Adjust the duration value to control the speed of opacity change
-    //         opacity: 1, // Set the desired opacity value
-    //         filter: "blur(0px)"
-    //       },
-    //       `<+=${index * 0.7}`
-    //     );
-    //   });
-    // });
-    gsap.matchMedia().add('(min-width: 992px)', function () {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '.the-content',
-          scrub: true,
-          pin: true,
-          start: 'top top',
-          end: '+=500%',
-          markers: false,
-        },
-      });
-
-      const frames = gsap.utils.toArray<HTMLElement>('.a-block');
-      frames.forEach(function (frame, index) {
-        gsap.set(frame, {
-          translateZ: '-100rem',
-          filter: 'blur(10px)',
-          opacity: 0,
-        });
-
-        tl.to(
-          frame,
-          {
-            duration: 8,
+  /* Main Wrapper: Background Change Animation */
+  gsap.utils.toArray('[mt-el=background]').forEach((elem) => {
+    const color = (elem as HTMLElement).getAttribute('data-color');
+    if (color !== null) {
+      ScrollTrigger.create({
+        trigger: elem as Element,
+        start: 'top 80%',
+        end: 'bottom 80%',
+        onEnter: function () {
+          gsap.to('main', {
+            backgroundColor: color,
+            duration: 1,
             ease: 'power2.inOut',
-            translateZ: '100rem',
-            opacity: 1,
-          },
-          '<+=' + index * 0.7
-        );
+          });
+        },
+        onLeave: function () {
+          gsap.to('main', {
+            backgroundColor: color,
+            duration: 1,
+            ease: 'power2.inOut',
+          });
+        },
+        onLeaveBack: function () {
+          gsap.to('main', {
+            backgroundColor: color,
+            duration: 1,
+            ease: 'power2.inOut',
+          });
+        },
+        onEnterBack: function () {
+          gsap.to('main', {
+            backgroundColor: color,
+            duration: 1,
+            ease: 'power2.inOut',
+          });
+        },
+        markers: false,
+      });
+    }
+  });
 
-        tl.to(
-          frame,
-          {
-            duration: 4, // Adjust the duration of the blur animation here
-            filter: 'blur(0px)',
-          },
-          '<' // Play the blur animation immediately after the previous animation
-        );
+  /* Section: Who We Are Hover Animation */
+  const whoWeAreWrappers = document.querySelectorAll<HTMLElement>('.who-we-are-wrapper');
+
+  whoWeAreWrappers.forEach((wrapper) => {
+    const sectionHeading = wrapper.querySelector('.who-we-are-p') as HTMLElement;
+    const sectionSpans = wrapper.querySelectorAll<HTMLElement>('.wave-link');
+    const sectionItems = wrapper.querySelectorAll<HTMLElement>('.about_item');
+
+    sectionSpans.forEach((span, index) => {
+      const relatedImages = sectionItems[index].querySelectorAll<HTMLElement>('.about_image');
+
+      const tl = gsap.timeline({ paused: true, defaults: { duration: 0.2 } });
+      tl.set(span, { zIndex: 3 });
+      tl.to(relatedImages, { opacity: 1, ease: 'power4.out' });
+      tl.fromTo(sectionHeading, { color: '#000000' }, { color: 'rgba(0, 0, 0, 0.2)' }, '<');
+
+      span.addEventListener('mouseenter', () => {
+        tl.timeScale(1).play();
+      });
+      span.addEventListener('mouseleave', () => {
+        tl.timeScale(2).reverse();
       });
     });
-  }); // end of document ready
+  });
+
+  /* Section: Play Button */
+  const video = document.getElementById('myVideo') as HTMLVideoElement;
+  const btnSvg = document.querySelector<HTMLElement>('.video-btn-svg');
+
+  video.addEventListener('click', () => {
+    if (video.paused) {
+      video.play();
+      if (btnSvg !== null) {
+        btnSvg.style.display = 'none'; // Hide the .video-btn-svg element
+      }
+    } else {
+      video.pause();
+      if (btnSvg !== null) {
+        btnSvg.style.display = 'block'; // Show the .video-btn-svg element
+      }
+    }
+  });
+
+  /* Section: Scroll Sticky Z-index Animation */
+  // gsap.matchMedia().add("(min-width: 992px)", () => {
+  //   const tl = gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: ".the-content",
+  //       scrub: true,
+  //       pin: true,
+  //       start: "top top",
+  //       end: "+=1200%",
+  //       markers: false
+  //     }
+  //   });
+  //   gsap.utils.toArray(".a-block").forEach((frame, index) => {
+  //     gsap.set(frame, {
+  //       translateZ: "-100rem",
+  //       filter: "blur(10px)",
+  //       opacity: 0
+  //     });
+
+  //     tl.to(frame, {
+  //       duration: 8,
+  //       ease: "power2.inOut",
+  //       translateZ: "100rem"
+  //     }).to(
+  //       frame,
+  //       {
+  //         duration: 4, // Adjust the duration value to control the speed of opacity change
+  //         opacity: 1, // Set the desired opacity value
+  //         filter: "blur(0px)"
+  //       },
+  //       `<+=${index * 0.7}`
+  //     );
+  //   });
+  // });
+  gsap.matchMedia().add('(min-width: 992px)', function () {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.the-content',
+        scrub: true,
+        pin: true,
+        start: 'top top',
+        end: '+=500%',
+        markers: false,
+      },
+    });
+
+    const frames = gsap.utils.toArray<HTMLElement>('.a-block');
+    frames.forEach(function (frame, index) {
+      gsap.set(frame, {
+        translateZ: '-100rem',
+        filter: 'blur(10px)',
+        opacity: 0,
+      });
+
+      tl.to(
+        frame,
+        {
+          duration: 8,
+          ease: 'power2.inOut',
+          translateZ: '100rem',
+          opacity: 1,
+        },
+        '<+=' + index * 0.7
+      );
+
+      tl.to(
+        frame,
+        {
+          duration: 4, // Adjust the duration of the blur animation here
+          filter: 'blur(0px)',
+        },
+        '<' // Play the blur animation immediately after the previous animation
+      );
+    });
+  });
 });

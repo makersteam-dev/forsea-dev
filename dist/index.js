@@ -6542,119 +6542,117 @@
   gsapWithCSS.registerPlugin(ScrollTrigger2);
   window.Webflow ||= [];
   window.Webflow.push(() => {
-    document.addEventListener("DOMContentLoaded", function() {
-      gsapWithCSS.utils.toArray("[mt-el=background]").forEach((elem) => {
-        const color = elem.getAttribute("data-color");
-        if (color !== null) {
-          ScrollTrigger2.create({
-            trigger: elem,
-            start: "top 80%",
-            end: "bottom 80%",
-            onEnter: function() {
-              gsapWithCSS.to("main", {
-                backgroundColor: color,
-                duration: 1,
-                ease: "power2.inOut"
-              });
-            },
-            onLeave: function() {
-              gsapWithCSS.to("main", {
-                backgroundColor: color,
-                duration: 1,
-                ease: "power2.inOut"
-              });
-            },
-            onLeaveBack: function() {
-              gsapWithCSS.to("main", {
-                backgroundColor: color,
-                duration: 1,
-                ease: "power2.inOut"
-              });
-            },
-            onEnterBack: function() {
-              gsapWithCSS.to("main", {
-                backgroundColor: color,
-                duration: 1,
-                ease: "power2.inOut"
-              });
-            },
-            markers: false
-          });
+    gsapWithCSS.utils.toArray("[mt-el=background]").forEach((elem) => {
+      const color = elem.getAttribute("data-color");
+      if (color !== null) {
+        ScrollTrigger2.create({
+          trigger: elem,
+          start: "top 80%",
+          end: "bottom 80%",
+          onEnter: function() {
+            gsapWithCSS.to("main", {
+              backgroundColor: color,
+              duration: 1,
+              ease: "power2.inOut"
+            });
+          },
+          onLeave: function() {
+            gsapWithCSS.to("main", {
+              backgroundColor: color,
+              duration: 1,
+              ease: "power2.inOut"
+            });
+          },
+          onLeaveBack: function() {
+            gsapWithCSS.to("main", {
+              backgroundColor: color,
+              duration: 1,
+              ease: "power2.inOut"
+            });
+          },
+          onEnterBack: function() {
+            gsapWithCSS.to("main", {
+              backgroundColor: color,
+              duration: 1,
+              ease: "power2.inOut"
+            });
+          },
+          markers: false
+        });
+      }
+    });
+    const whoWeAreWrappers = document.querySelectorAll(".who-we-are-wrapper");
+    whoWeAreWrappers.forEach((wrapper) => {
+      const sectionHeading = wrapper.querySelector(".who-we-are-p");
+      const sectionSpans = wrapper.querySelectorAll(".wave-link");
+      const sectionItems = wrapper.querySelectorAll(".about_item");
+      sectionSpans.forEach((span, index) => {
+        const relatedImages = sectionItems[index].querySelectorAll(".about_image");
+        const tl = gsapWithCSS.timeline({ paused: true, defaults: { duration: 0.2 } });
+        tl.set(span, { zIndex: 3 });
+        tl.to(relatedImages, { opacity: 1, ease: "power4.out" });
+        tl.fromTo(sectionHeading, { color: "#000000" }, { color: "rgba(0, 0, 0, 0.2)" }, "<");
+        span.addEventListener("mouseenter", () => {
+          tl.timeScale(1).play();
+        });
+        span.addEventListener("mouseleave", () => {
+          tl.timeScale(2).reverse();
+        });
+      });
+    });
+    const video = document.getElementById("myVideo");
+    const btnSvg = document.querySelector(".video-btn-svg");
+    video.addEventListener("click", () => {
+      if (video.paused) {
+        video.play();
+        if (btnSvg !== null) {
+          btnSvg.style.display = "none";
+        }
+      } else {
+        video.pause();
+        if (btnSvg !== null) {
+          btnSvg.style.display = "block";
+        }
+      }
+    });
+    gsapWithCSS.matchMedia().add("(min-width: 992px)", function() {
+      const tl = gsapWithCSS.timeline({
+        scrollTrigger: {
+          trigger: ".the-content",
+          scrub: true,
+          pin: true,
+          start: "top top",
+          end: "+=500%",
+          markers: false
         }
       });
-      const whoWeAreWrappers = document.querySelectorAll(".who-we-are-wrapper");
-      whoWeAreWrappers.forEach((wrapper) => {
-        const sectionHeading = wrapper.querySelector(".who-we-are-p");
-        const sectionSpans = wrapper.querySelectorAll(".wave-link");
-        const sectionItems = wrapper.querySelectorAll(".about_item");
-        sectionSpans.forEach((span, index) => {
-          const relatedImages = sectionItems[index].querySelectorAll(".about_image");
-          const tl = gsapWithCSS.timeline({ paused: true, defaults: { duration: 0.2 } });
-          tl.set(span, { zIndex: 3 });
-          tl.to(relatedImages, { opacity: 1, ease: "power4.out" });
-          tl.fromTo(sectionHeading, { color: "#000000" }, { color: "rgba(0, 0, 0, 0.2)" }, "<");
-          span.addEventListener("mouseenter", () => {
-            tl.timeScale(1).play();
-          });
-          span.addEventListener("mouseleave", () => {
-            tl.timeScale(2).reverse();
-          });
+      const frames = gsapWithCSS.utils.toArray(".a-block");
+      frames.forEach(function(frame, index) {
+        gsapWithCSS.set(frame, {
+          translateZ: "-100rem",
+          filter: "blur(10px)",
+          opacity: 0
         });
-      });
-      const video = document.getElementById("myVideo");
-      const btnSvg = document.querySelector(".video-btn-svg");
-      video.addEventListener("click", () => {
-        if (video.paused) {
-          video.play();
-          if (btnSvg !== null) {
-            btnSvg.style.display = "none";
-          }
-        } else {
-          video.pause();
-          if (btnSvg !== null) {
-            btnSvg.style.display = "block";
-          }
-        }
-      });
-      gsapWithCSS.matchMedia().add("(min-width: 992px)", function() {
-        const tl = gsapWithCSS.timeline({
-          scrollTrigger: {
-            trigger: ".the-content",
-            scrub: true,
-            pin: true,
-            start: "top top",
-            end: "+=500%",
-            markers: false
-          }
-        });
-        const frames = gsapWithCSS.utils.toArray(".a-block");
-        frames.forEach(function(frame, index) {
-          gsapWithCSS.set(frame, {
-            translateZ: "-100rem",
-            filter: "blur(10px)",
-            opacity: 0
-          });
-          tl.to(
-            frame,
-            {
-              duration: 8,
-              ease: "power2.inOut",
-              translateZ: "100rem",
-              opacity: 1
-            },
-            "<+=" + index * 0.7
-          );
-          tl.to(
-            frame,
-            {
-              duration: 4,
-              // Adjust the duration of the blur animation here
-              filter: "blur(0px)"
-            },
-            "<"
-            // Play the blur animation immediately after the previous animation
-          );
-        });
+        tl.to(
+          frame,
+          {
+            duration: 8,
+            ease: "power2.inOut",
+            translateZ: "100rem",
+            opacity: 1
+          },
+          "<+=" + index * 0.7
+        );
+        tl.to(
+          frame,
+          {
+            duration: 4,
+            // Adjust the duration of the blur animation here
+            filter: "blur(0px)"
+          },
+          "<"
+          // Play the blur animation immediately after the previous animation
+        );
       });
     });
   });
