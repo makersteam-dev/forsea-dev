@@ -94,6 +94,7 @@ window.Webflow.push(() => {
   /* Section: Play Button */
   const video = document.getElementById('myVideo') as HTMLVideoElement;
   const btnSvg = document.querySelector<HTMLElement>('.video-btn-svg');
+  const dummyBtnSvg = document.querySelector<HTMLElement>('.video-btn-svg-dummy');
 
   video.addEventListener('click', () => {
     if (video.paused) {
@@ -101,10 +102,16 @@ window.Webflow.push(() => {
       if (btnSvg !== null) {
         btnSvg.style.display = 'none'; // Hide the .video-btn-svg element
       }
+      if (dummyBtnSvg !== null) {
+        dummyBtnSvg.style.display = 'none'; // Hide the .video-btn-svg-dummy element
+      }
     } else {
       video.pause();
       if (btnSvg !== null) {
         btnSvg.style.display = 'block'; // Show the .video-btn-svg element
+      }
+      if (dummyBtnSvg !== null) {
+        dummyBtnSvg.style.display = 'block'; // Show the .video-btn-svg-dummy element
       }
     }
   });
