@@ -7,7 +7,7 @@ const BUILD_DIRECTORY = 'dist';
 const PRODUCTION = process.env.NODE_ENV === 'production';
 
 // Config entrypoint files
-const ENTRY_POINTS = ['src/mt-index1.0.0.ts', 'src/mt-global1.0.0.ts', 'src/mt-about1.0.0.ts'];
+const ENTRY_POINTS = ['src/mt-index1.0.1.ts', 'src/mt-global1.0.0.ts', 'src/mt-about1.0.0.ts'];
 
 // Config dev serving
 const LIVE_RELOAD = !PRODUCTION;
