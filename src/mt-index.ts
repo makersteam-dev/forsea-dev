@@ -36,28 +36,28 @@ window.Webflow.push(() => {
         onEnter: function () {
           gsap.to('main', {
             backgroundColor: color,
-            duration: 1,
+            duration: 0.3,
             ease: 'power2.inOut',
           });
         },
         onLeave: function () {
           gsap.to('main', {
             backgroundColor: color,
-            duration: 1,
+            duration: 0.3,
             ease: 'power2.inOut',
           });
         },
         onLeaveBack: function () {
           gsap.to('main', {
             backgroundColor: color,
-            duration: 1,
+            duration: 0.3,
             ease: 'power2.inOut',
           });
         },
         onEnterBack: function () {
           gsap.to('main', {
             backgroundColor: color,
-            duration: 1,
+            duration: 0.3,
             ease: 'power2.inOut',
           });
         },
@@ -94,6 +94,7 @@ window.Webflow.push(() => {
   /* Section: Play Button */
   const video = document.getElementById('myVideo') as HTMLVideoElement;
   const btnSvg = document.querySelector<HTMLElement>('.video-btn-svg');
+  const btnSvgPause = document.querySelector<HTMLElement>('.video-btn-svg-pause');
   const dummyBtnSvg = document.querySelector<HTMLElement>('.video-btn-svg-dummy');
 
   video.addEventListener('click', () => {
@@ -102,6 +103,9 @@ window.Webflow.push(() => {
       if (btnSvg !== null) {
         btnSvg.style.display = 'none'; // Hide the .video-btn-svg element
       }
+      if (btnSvgPause !== null) {
+        btnSvgPause.style.display = 'flex'; // Hide the .video-btn-svg element
+      }
       if (dummyBtnSvg !== null) {
         dummyBtnSvg.style.display = 'none'; // Hide the .video-btn-svg-dummy element
       }
@@ -109,6 +113,9 @@ window.Webflow.push(() => {
       video.pause();
       if (btnSvg !== null) {
         btnSvg.style.display = 'block'; // Show the .video-btn-svg element
+      }
+      if (btnSvgPause !== null) {
+        btnSvgPause.style.display = 'flex'; // Hide the .video-btn-svg element
       }
       if (dummyBtnSvg !== null) {
         dummyBtnSvg.style.display = 'block'; // Show the .video-btn-svg-dummy element
