@@ -16,6 +16,7 @@ window.Webflow.push(() => {
     types: 'words, chars',
     tagName: 'span',
   });
+
   const tl = gsap.timeline();
   tl.from('[mt-el=split] > .word > .char', {
     duration: 1,
@@ -130,7 +131,7 @@ window.Webflow.push(() => {
         scrub: true,
         pin: true,
         start: 'top top',
-        end: '+=300%',
+        end: '+=500%',
         markers: false,
       },
     });
@@ -149,23 +150,23 @@ window.Webflow.push(() => {
           ease: 'power2.inOut',
           translateZ: index === 5 ? '30rem' : '100rem',
         },
-        '<+=' + index * 0.6
+        '<+=' + index * 0.4
       );
       tl.to(
         frame,
         {
-          duration: 1, // Adjust the duration of the blur animation here
+          duration: 1,
           opacity: 1,
         },
-        '<' // Play the blur animation immediately after the previous animation
+        '<'
       );
       tl.to(
         frame,
         {
-          duration: 2.5, // Adjust the duration of the blur animation here
+          duration: 2.5,
           filter: 'blur(0px)',
         },
-        '<+=2' // Play the blur animation immediately after the previous animation
+        '<+=1.8'
       );
     });
   });
