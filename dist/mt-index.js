@@ -6637,7 +6637,7 @@
           btnSvg.style.display = "block";
         }
         if (btnSvgPause !== null) {
-          btnSvgPause.style.display = "flex";
+          btnSvgPause.style.display = "none";
         }
         if (dummyBtnSvg !== null) {
           dummyBtnSvg.style.display = "block";
@@ -6651,7 +6651,7 @@
           scrub: true,
           pin: true,
           start: "top top",
-          end: "+=500%",
+          end: "+=300%",
           markers: false
         }
       });

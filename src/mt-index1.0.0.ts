@@ -115,7 +115,7 @@ window.Webflow.push(() => {
         btnSvg.style.display = 'block'; // Show the .video-btn-svg element
       }
       if (btnSvgPause !== null) {
-        btnSvgPause.style.display = 'flex'; // Hide the .video-btn-svg element
+        btnSvgPause.style.display = 'none'; // Hide the .video-btn-svg element
       }
       if (dummyBtnSvg !== null) {
         dummyBtnSvg.style.display = 'block'; // Show the .video-btn-svg-dummy element
@@ -130,7 +130,7 @@ window.Webflow.push(() => {
         scrub: true,
         pin: true,
         start: 'top top',
-        end: '+=500%',
+        end: '+=300%',
         markers: false,
       },
     });
