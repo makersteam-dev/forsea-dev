@@ -164,49 +164,59 @@ window.Webflow.push(() => {
     }
   });
 
+  /* Section: The Content */
+
+  // Match media query with minimum width of 992px
   gsap.matchMedia().add('(min-width: 992px)', function () {
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: '.the-content',
-        scrub: true,
-        pin: true,
-        start: 'top top',
-        end: '+=700%',
-        markers: false,
+        trigger: '.the-content', // Element that triggers the animation
+        scrub: true, // Enables smooth scrubbing effect during scroll
+        pin: true, // Pins the trigger element during animation
+        start: 'top top', // Start of the trigger element relative to viewport
+        end: '+=700%', // End of the trigger element relative to viewport
+        markers: false, // Set to true to display markers for debugging
       },
     });
 
-    const frames = gsap.utils.toArray<HTMLElement>('.a-block');
+    const frames = gsap.utils.toArray<HTMLElement>('.a-block'); // Get all elements with class "a-block"
     frames.forEach(function (frame, index) {
+      // Set initial properties for each "a-block" element
       gsap.set(frame, {
-        translateZ: '-100rem',
-        filter: 'blur(20px)',
-        opacity: 0,
+        translateZ: '-100rem', // Move element away from viewer (negative Z-axis) for a 3D effect
+        filter: 'blur(20px)', // Apply blur effect
+        opacity: 0, // Set initial opacity to 0
       });
+
+      // Animate the "translateZ" property of each element based on the index
       tl.to(
         frame,
         {
-          duration: 8,
-          ease: 'power2.inOut',
-          translateZ: index === 5 ? '30rem' : '100rem',
+          duration: 8, // Animation duration
+          ease: 'power2.inOut', // Easing function
+          translateZ: '77rem', // Set different Z value for the 6th element
         },
-        '<+=' + index * 0.4
+        '<+=' + index * 0.4 // Animation stagger based on index
       );
+
+      // Fade in the element
       tl.to(
         frame,
         {
-          duration: 1,
-          opacity: 1,
+          duration: 1, // Animation duration
+          opacity: 1, // Set opacity to 1 (fully visible)
         },
-        '<'
+        '<' // Use relative label for timeline position (right after the previous animation)
       );
+
+      // Remove the blur effect
       tl.to(
         frame,
         {
-          duration: 1.5,
-          filter: 'blur(0px)',
+          duration: 1.5, // Animation duration
+          filter: 'blur(0px)', // Set blur to 0 (no blur)
         },
-        '<+=1.8'
+        '<+=1.8' // Animation delay after the previous animation
       );
     });
   });
