@@ -224,7 +224,7 @@ window.Webflow.push(() => {
 /*! Run dev run:
 makersteam.co:
   (*!
-   * MakersTeam 1.0.0
+   * MakersTeam 1.0.3
    * https://makersteam.co
    *
    * @license Copyright 2008-2023
