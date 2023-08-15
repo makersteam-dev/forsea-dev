@@ -194,7 +194,7 @@ window.Webflow.push(() => {
         {
           duration: 8, // Animation duration
           ease: 'power2.inOut', // Easing function
-          translateZ: '77rem', // Set different Z value for the 6th element
+          translateZ: '80rem', // Set different Z value for the 6th element
         },
         '<+=' + index * 0.4 // Animation stagger based on index
       );
